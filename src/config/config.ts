@@ -1,6 +1,6 @@
-export const BACKEND_URL = 'http://dev.fffu.fun'
+export const BACKEND_URL = 'https://dev.fffu.fun'
 
-export const HOME_URL = 'http://oj.fffu.fun'
+export const HOME_URL = 'https://oj.fffu.fun'
 
 export const DEFAULT_AVATAR =
   'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'

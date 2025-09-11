@@ -2,10 +2,12 @@ import { getCurrentUser, login, loginByCode, logout } from '@/api/user'
 import type { AccountLoginReq, CodeLoginReq, UserVo } from '@/api/user/types'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const useUserStore = defineStore('user', () => {
   const isLoggedIn = ref(false)
   const userInfo = ref<UserVo | null>(null)
+  const router = useRouter()
 
   const refreshStore = async () => {
     const res = await getCurrentUser()
@@ -31,6 +33,7 @@ const useUserStore = defineStore('user', () => {
     await logout()
     isLoggedIn.value = false
     userInfo.value = null
+    router.push('/login')
   }
 
   return {

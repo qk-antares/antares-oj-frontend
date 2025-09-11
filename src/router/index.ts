@@ -88,7 +88,12 @@ router.beforeEach(async (to, from, next) => {
     return next()
   }
 
-  // 确实没登录
+  // 未登录，且访问的是 login 页面，则放行
+  if (to.name === 'login') {
+    return next()
+  }
+
+  // 未登录，访问其他页面，跳转 login
   return next({ name: 'login' })
 })
 

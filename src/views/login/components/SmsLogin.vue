@@ -41,32 +41,59 @@ onBeforeUnmount(() => {
 })
 
 const handleLogin = () => {
-  userStore.loginByCode({
-    email: email.value,
-    captcha: captcha.value,
-  }).then(redirect)
+  userStore
+    .loginByCode({
+      email: email.value,
+      captcha: captcha.value,
+    })
+    .then(() => {
+      Message.success({
+        content: '登录成功！正在跳转...',
+        duration: 3 * 1000,
+      })
+      redirect()
+    })
 }
 </script>
 
 <template>
   <a-space direction="vertical" size="large">
-    <a-input v-model="email" size="large" :style="{ width: '320px' }" placeholder="请输入邮箱" allow-clear>
+    <a-input
+      v-model="email"
+      size="large"
+      :style="{ width: '320px' }"
+      placeholder="请输入邮箱"
+      allow-clear
+    >
       <template #prefix>
         <icon-user />
       </template>
     </a-input>
 
     <a-space size="medium" direction="horizontal">
-      <a-input v-model="captcha" size="large" placeholder="请输入验证码" allow-clear>
+      <a-input
+        v-model="captcha"
+        size="large"
+        placeholder="请输入验证码"
+        allow-clear
+      >
         <template #prefix>
           <icon-lock />
         </template>
       </a-input>
-      <a-button size="large" class="w-32" :disabled="smsDisabled" @click="handleSmsCode">{{ smsText }}</a-button>
+      <a-button
+        size="large"
+        class="w-32"
+        :disabled="smsDisabled"
+        @click="handleSmsCode"
+        >{{ smsText }}</a-button
+      >
     </a-space>
 
     <div>
-      <a-button class="w-full" type="primary" @click="handleLogin">登录/注册</a-button>
+      <a-button class="w-full" type="primary" @click="handleLogin"
+        >登录/注册</a-button
+      >
     </div>
   </a-space>
 </template>
