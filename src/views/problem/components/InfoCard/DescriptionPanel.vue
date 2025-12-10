@@ -79,21 +79,26 @@ import SolvedIcon from '@/components/icons/SolvedIcon.vue'
 import TriedIcon from '@/components/icons/TriedIcon.vue'
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
-import { onMounted } from 'vue'
+import { nextTick, watch } from 'vue'
 
 const { problem } = defineProps<{
   problem: SafeProblemVo
 }>()
 
-onMounted(() => {
-  Vditor.preview(
-    document.getElementById('content') as HTMLDivElement,
-    problem.content,
-    {
-      mode: 'light',
-    },
-  )
-})
+watch(
+  () => problem.content,
+  newContent => {
+    console.log('渲染题目描述')
+
+    nextTick(() => {
+      const el = document.getElementById('content') as HTMLDivElement
+      if (el) {
+        Vditor.preview(el, newContent, { mode: 'light' })
+      }
+    })
+  },
+  { immediate: true },
+)
 </script>
 
 <style scoped>

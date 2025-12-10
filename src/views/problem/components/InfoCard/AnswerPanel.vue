@@ -1,22 +1,34 @@
 <template>
-  <div class="overflow-auto px-4 pb-5 select-text" style="height: calc(100vh - 96px)">
+  <div
+    class="overflow-auto px-4 pb-5 select-text"
+    style="height: calc(100vh - 96px)"
+  >
     <div id="answer" />
   </div>
 </template>
 
 <script setup lang="ts">
-import Vditor from 'vditor';
-import { onMounted } from 'vue';
+import Vditor from 'vditor'
+import { nextTick, watch } from 'vue'
 
 const { answer } = defineProps<{
   answer: string
 }>()
 
-onMounted(() => {
-  Vditor.preview(document.getElementById('answer') as HTMLDivElement, answer, {
-    mode: 'light',
-  })
-})
+watch(
+  () => answer,
+  newAnswer => {
+    console.log('渲染题目答案')
+
+    nextTick(() => {
+      const el = document.getElementById('answer') as HTMLDivElement
+      if (el) {
+        Vditor.preview(el, newAnswer, { mode: 'light' })
+      }
+    })
+  },
+  { immediate: true },
+)
 </script>
 
 <style scoped>

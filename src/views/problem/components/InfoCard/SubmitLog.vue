@@ -91,7 +91,7 @@ import type { ProblemSubmitVo } from '@/api/problem/types'
 import IconFont from '@/utils/iconfont'
 import type { TableColumnData } from '@arco-design/web-vue'
 import dayjs from 'dayjs'
-import { computed, inject, onMounted, ref, type Ref } from 'vue'
+import { computed, inject, ref, watch, type Ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -142,9 +142,15 @@ const fetchProblemSubmitPage = (current: number) => {
   })
 }
 
-onMounted(() => {
-  fetchProblemSubmitPage(submitLogs.value.current)
-})
+watch(
+  () => problemId.value,
+  () => {
+    console.log('拉取提交历史')
+
+    fetchProblemSubmitPage(1)
+  },
+  { immediate: true },
+)
 </script>
 
 <style scoped>

@@ -4,11 +4,7 @@
 
     <div class="float-right">
       <a-tooltip content="还原到默认代码模板" position="tr" mini>
-        <a-button
-          @click="$emit('resetCode')"
-          class="!w-6 !h-6 mr-1"
-          type="text"
-        >
+        <a-button @click="resetCode" class="!w-6 !h-6 mr-1" type="text">
           <template #icon>
             <icon-refresh />
           </template>
@@ -16,7 +12,7 @@
       </a-tooltip>
 
       <a-tooltip content="保存" position="tr" mini>
-        <a-button @click="$emit('saveCode')" class="!w-6 !h-6" type="text">
+        <a-button @click="saveCode" class="!w-6 !h-6" type="text">
           <template #icon>
             <icon-save />
           </template>
@@ -34,6 +30,15 @@
 
 <script setup lang="ts">
 import DividerLine from '@/components/common/DividerLine.vue'
+import { Message } from '@arco-design/web-vue'
 import LangSelect from './CodePanel/LangSelect.vue'
 import MonacoEditor from './CodePanel/MonacoEditor.vue'
+
+const resetCode = () => {
+  Message.info('暂未实现')
+}
+
+const saveCode = () => {
+  Message.info('暂未实现')
+}
 </script>

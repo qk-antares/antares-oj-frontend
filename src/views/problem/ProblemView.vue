@@ -48,10 +48,14 @@
 
 <script lang="ts" setup>
 import { getSafeProblemVoById } from '@/api/problem'
-import type { SafeProblemVo } from '@/api/problem/types'
+import type {
+  ProblemSubmitVo,
+  SafeProblemVo,
+  TestResults,
+} from '@/api/problem/types'
 import { useWindowSize } from '@/composables/useWindowSize'
 import { v4 as uuidv4 } from 'uuid'
-import { computed, inject, onMounted, ref, watch, type Ref } from 'vue'
+import { computed, inject, ref, watch, type Ref } from 'vue'
 import CodeCard from './components/CodeCard.vue'
 import DebugCard from './components/DebugCard.vue'
 import ProblemInfoCard from './components/InfoCard.vue'
@@ -68,6 +72,15 @@ const inputList = inject<Ref<{ id: string; input: string }[]>>(
 const { pageHeight } = useWindowSize()
 
 const height = inject('height', ref())
+const submitResult = inject<Ref<ProblemSubmitVo>>(
+  'submitResult',
+  ref({} as ProblemSubmitVo),
+)
+const testResults = inject<Ref<TestResults>>(
+  'testResults',
+  ref({} as TestResults),
+)
+const debugActive = inject<Ref<string | number>>('debugActive', ref('1'))
 
 const problem = ref<SafeProblemVo>()
 
@@ -79,16 +92,25 @@ const fold = computed(() => {
   }
 })
 
-// 在组件挂载后添加事件监听
-onMounted(() => {
-  getSafeProblemVoById(problemId).then(res => {
-    problem.value = res.data.data
-    inputList.value = res.data.data.judgeCase.map(item => ({
-      id: uuidv4(),
-      input: item,
-    }))
-  })
-})
+watch(
+  () => problemId,
+  newId => {
+    console.log('加载题目')
+
+    submitResult.value = {} as ProblemSubmitVo
+    debugActive.value = '1'
+    testResults.value = {} as TestResults
+
+    getSafeProblemVoById(newId).then(res => {
+      problem.value = res.data.data
+      inputList.value = res.data.data.judgeCase.map(item => ({
+        id: uuidv4(),
+        input: item,
+      }))
+    })
+  },
+  { immediate: true },
+)
 
 // 监听页面尺寸变化
 watch(pageHeight, newHeight => {

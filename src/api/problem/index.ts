@@ -56,3 +56,7 @@ export function doProblemSubmit(data: ProblemSubmitAddReq) {
 export function listProblemSubmitVoByPage(data: ProblemSubmitQueryReq) {
   return axios.post<R<Page<ProblemSubmitVo>>>('/judge/submit/page/vo', data)
 }
+
+export function getPrevNextProblemId(id: number, direction: 'prev' | 'next') {
+  return axios.get<R<number>>(`/judge/problem/${id}/${direction}`)
+}
