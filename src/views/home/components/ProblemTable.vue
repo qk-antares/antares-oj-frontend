@@ -79,7 +79,15 @@
       </template>
 
       <template #difficulty="{ record }">
-        {{ record.difficulty }}
+        <span
+          :class="{
+            'text-easy': record.difficulty === '简单',
+            'text-medium': record.difficulty === '中等',
+            'text-hard': record.difficulty === '困难',
+          }"
+        >
+          {{ record.difficulty }}
+        </span>
       </template>
     </a-table>
   </a-space>
