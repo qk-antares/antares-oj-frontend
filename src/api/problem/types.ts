@@ -131,3 +131,14 @@ export interface ProblemSubmitVo {
 export interface ProblemSubmitQueryReq extends PageReq {
   problemId?: number
 }
+
+export interface SubmitSummaryVo {
+  easyPass: number
+  easyTotal: number
+  mediumPass: number
+  mediumTotal: number
+  hardPass: number
+  hardTotal: number
+  submitCount: number
+  passCount: number
+}

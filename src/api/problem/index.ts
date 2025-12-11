@@ -11,6 +11,7 @@ import type {
   ProblemUpdateReq,
   ProblemVo,
   SafeProblemVo,
+  SubmitSummaryVo,
 } from './types'
 
 export function addProblem(data: ProblemAddReq) {
@@ -59,4 +60,8 @@ export function listProblemSubmitVoByPage(data: ProblemSubmitQueryReq) {
 
 export function getPrevNextProblemId(id: number, direction: 'prev' | 'next') {
   return axios.get<R<number>>(`/judge/problem/${id}/${direction}`)
+}
+
+export function getSubmitSummary() {
+  return axios.get<R<SubmitSummaryVo>>('/judge/submit/summary')
 }
