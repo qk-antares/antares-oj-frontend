@@ -18,3 +18,8 @@ export interface UserVo {
   avatar?: string
   userRole?: '' | 'user' | 'admin' | 'ban'
 }
+
+export interface AKSKVo {
+  accessKey: string
+  secretKey: string
+}

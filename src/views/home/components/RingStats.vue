@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { SubmitSummaryVo } from '@/api/problem/types'
-import { computed, ref } from 'vue'
+import type { SubmitSummaryVo } from '@/api/problem/types';
+import { computed, ref } from 'vue';
 
 const props = defineProps<{
   summary: SubmitSummaryVo
@@ -42,11 +42,11 @@ type CenterState =
 
 // 一些颜色信息
 const difficultyMeta: Record<DifficultyKey, { label: string; color: string }> =
-  {
-    easy: { label: '简单', color: '#22c55e' },
-    medium: { label: '中等', color: '#f59e0b' },
-    hard: { label: '困难', color: '#ef4444' },
-  }
+{
+  easy: { label: '简单', color: '#22c55e' },
+  medium: { label: '中等', color: '#f59e0b' },
+  hard: { label: '困难', color: '#ef4444' },
+}
 
 const GREY_COLOR = '#d1d5db'
 
@@ -66,9 +66,9 @@ const withAlpha = (hexColor: string, alpha: number) => {
   const normalized =
     hex.length === 3
       ? hex
-          .split('')
-          .map(char => char + char)
-          .join('')
+        .split('')
+        .map(char => char + char)
+        .join('')
       : hex
   const value = parseInt(normalized, 16)
   const r = (value >> 16) & 0xff
@@ -213,55 +213,21 @@ const handleMouseLeave = () => {
 </script>
 
 <template>
-  <div class="flex items-start justify-between gap-4 w-full px-[15px]">
-    <div
-      class="relative flex justify-center items-center cursor-pointer"
-      @mouseenter="handleMouseEnter"
-      @mouseleave="handleMouseLeave"
-    >
-      <svg
-        class="block"
-        :viewBox="`0 0 ${viewBoxSize} ${viewBoxSize}`"
-        role="img"
-        aria-hidden="true"
-        :style="{ width: `${chartSize}px`, height: `${chartSize}px` }"
-      >
-        <circle
-          v-if="totalProblems === 0"
-          class="block"
-          fill="transparent"
-          :cx="center"
-          :cy="center"
-          :r="radius"
-          :stroke-width="strokeWidth"
-          :transform="`rotate(-90 ${center} ${center})`"
-        />
+  <div class="flex items-start justify-between gap-6 w-full px-2">
+    <div class="relative flex justify-center items-center cursor-pointer" @mouseenter="handleMouseEnter"
+      @mouseleave="handleMouseLeave">
+      <svg class="block" :viewBox="`0 0 ${viewBoxSize} ${viewBoxSize}`" role="img" aria-hidden="true"
+        :style="{ width: `${chartSize}px`, height: `${chartSize}px` }">
+        <circle v-if="totalProblems === 0" class="block" fill="transparent" :cx="center" :cy="center" :r="radius"
+          :stroke-width="strokeWidth" :transform="`rotate(-90 ${center} ${center})`" />
         <template v-else>
-          <circle
-            class="block"
-            fill="transparent"
-            :cx="center"
-            :cy="center"
-            :r="radius"
-            :stroke-width="strokeWidth"
-            :transform="`rotate(-90 ${center} ${center})`"
-          />
-          <circle
-            v-for="(segment, index) in segments"
-            :key="`${segment.key}-${segment.type}-${index}`"
-            class="segment"
-            :class="{ 'segment--static': segment.type === 'unsolved' }"
-            fill="transparent"
-            :cx="center"
-            :cy="center"
-            :r="radius"
-            :stroke="segment.color"
-            :stroke-width="strokeWidth"
-            :stroke-dasharray="segment.dasharray"
-            :stroke-dashoffset="segment.dashoffset"
-            stroke-linecap="butt"
-            :transform="`rotate(-90 ${center} ${center})`"
-          />
+          <circle class="block" fill="transparent" :cx="center" :cy="center" :r="radius" :stroke-width="strokeWidth"
+            :transform="`rotate(-90 ${center} ${center})`" />
+          <circle v-for="(segment, index) in segments" :key="`${segment.key}-${segment.type}-${index}`" class="segment"
+            :class="{ 'segment--static': segment.type === 'unsolved' }" fill="transparent" :cx="center" :cy="center"
+            :r="radius" :stroke="segment.color" :stroke-width="strokeWidth" :stroke-dasharray="segment.dasharray"
+            :stroke-dashoffset="segment.dashoffset" stroke-linecap="butt"
+            :transform="`rotate(-90 ${center} ${center})`" />
         </template>
       </svg>
       <div class="chart-center">
@@ -269,7 +235,7 @@ const handleMouseLeave = () => {
           <div>
             <span class="center-value">{{
               centerState.rate.split('.')[0]
-            }}</span>
+              }}</span>
             <span class="text-xs">.{{ centerState.rate.split('.')[1] }} </span>
           </div>
 
@@ -285,12 +251,8 @@ const handleMouseLeave = () => {
       </div>
     </div>
     <div class="difficulty-list">
-      <div
-        v-for="row in difficultyDetails"
-        :key="row.key"
-        class="difficulty-item"
-        :style="{ backgroundColor: row.background }"
-      >
+      <div v-for="row in difficultyDetails" :key="row.key" class="difficulty-item"
+        :style="{ backgroundColor: row.background }">
         <span class="difficulty-name" :style="{ color: row.color }">
           {{ row.label }}
         </span>

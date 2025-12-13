@@ -6,8 +6,6 @@ import CheckIn from './components/CheckIn.vue'
 import ProblemTable from './components/ProblemTable.vue'
 import RingStats from './components/RingStats.vue'
 
-const date = ref<Date>(new Date())
-
 const submitSummaryVo = ref({} as SubmitSummaryVo)
 
 onMounted(() => {
@@ -27,7 +25,7 @@ onMounted(() => {
       </div>
       <div class="col-span-1">
         <a-card :content-style="{ padding: '0px' }" class="drop-shadow-sm">
-          <check-in :date="date" />
+          <check-in />
 
           <a-divider />
 

@@ -65,3 +65,7 @@ export function getPrevNextProblemId(id: number, direction: 'prev' | 'next') {
 export function getSubmitSummary() {
   return axios.get<R<SubmitSummaryVo>>('/judge/submit/summary')
 }
+
+export function getCheckInDates(date: string) {
+  return axios.get<R<string[]>>(`/judge/submit/checkIn/${date}`)
+}

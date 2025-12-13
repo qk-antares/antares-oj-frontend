@@ -1,6 +1,6 @@
 import axios from 'axios'
 import type { R } from '../common/types'
-import type { AccountLoginReq, CodeLoginReq, UserVo } from './types'
+import type { AccountLoginReq, AKSKVo, CodeLoginReq, UserVo } from './types'
 
 export function login(data: AccountLoginReq) {
   return axios.post('/user/login', data)
@@ -20,6 +20,10 @@ export function sendMailCode(email: string) {
 
 export function getCurrentUser() {
   return axios.get<R<UserVo>>('/user/current')
+}
+
+export function getAKSK() {
+  return axios.get<R<AKSKVo>>('/user/aksk')
 }
 
 export function logout() {

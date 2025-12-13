@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import SearchBox from '@/components/header/SearchBox.vue'
 import UserAvatar from '@/components/header/UserAvatar.vue'
 import { useUserStore } from '@/stores'
 import { computed } from 'vue'
@@ -40,8 +39,9 @@ const activePath = computed(() => {
   <nav class="flex h-[50px] w-full min-w-[820px] justify-center border-b-[1px]">
     <div class="mx-auto flex h-full w-full items-center px-6 max-w-[1200px]">
       <router-link to="/" class="mr-8">
-        <span class="h-[22px]">
+        <span class="h-[22px] flex items-center">
           <img class="h-[22px] object-cover" src="/favicon.svg" alt="logo" />
+          <img class="h-[22px] object-cover" src="/logo.png" alt="logo-text" />
         </span>
       </router-link>
 
@@ -56,7 +56,7 @@ const activePath = computed(() => {
       </ul>
 
       <a-space direction="horizontal">
-        <search-box />
+        <!-- <search-box /> -->
         <user-avatar />
       </a-space>
     </div>

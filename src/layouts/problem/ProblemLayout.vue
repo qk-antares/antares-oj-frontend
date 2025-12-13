@@ -13,43 +13,22 @@
 
       <ProblemRouter />
 
-      <div
-        v-if="!loading"
-        class="flex-grow flex justify-center pr-[161px] space-x-[1px]"
-      >
-        <a-button
-          @click="handleRun"
-          class="common-button"
-          :style="{ color: 'black' }"
-          type="text"
-        >
+      <div v-if="!loading" class="flex-grow flex justify-center pr-[161px] space-x-[1px]">
+        <a-button @click="handleRun" class="common-button" :style="{ color: 'black' }" type="text">
           <template #icon>
             <icon-font type="icon-yunhang" class="text-lg" />
           </template>
           运行
         </a-button>
-        <a-button
-          @click="handleSubmit"
-          class="common-button"
-          :style="{ color: '#01b328' }"
-          type="text"
-        >
+        <a-button @click="handleSubmit" class="common-button" :style="{ color: '#01b328' }" type="text">
           <template #icon>
             <icon-font type="icon-cloudupload" class="text-lg" />
           </template>
           提交
         </a-button>
       </div>
-      <div
-        v-if="loading"
-        class="flex-grow flex justify-center pr-[161px] text-gr"
-      >
-        <a-button
-          class="common-button"
-          :style="{ background: '#E7E7E7' }"
-          type="text"
-          :disabled="true"
-        >
+      <div v-if="loading" class="flex-grow flex justify-center pr-[161px] text-gr">
+        <a-button class="common-button" :style="{ background: '#E7E7E7' }" type="text" :disabled="true">
           <template #icon>
             <icon-loading class="text-lg" />
           </template>
@@ -128,9 +107,6 @@ const handleRun = () => {
 
   loading.value = true
 
-  // 清空测试结果
-  testResults.value = {} as TestResults
-
   doProblemRun({
     code: code.value,
     language: language.value,
@@ -141,26 +117,29 @@ const handleRun = () => {
       ...res.data.data,
     }
 
-    loading.value = false
+    // 改变debug标签页与页高
+    debugActive.value = '2'
+    height.value = `${(pageHeight.value - 54) * 0.5}px`
   })
-  // 改变debug标签页与页高
-  debugActive.value = '2'
-  height.value = `${(pageHeight.value - 54) * 0.5}px`
+
+  loading.value = false
 }
 
 const handleSubmit = () => {
   loading.value = true
+
   doProblemSubmit({
     code: code.value,
     language: language.value,
     problemId: problemId.value,
   }).then(res => {
     submitResult.value = res.data.data
+
     codeActive.value = '2'
     submitLogs.value.records.unshift(res.data.data)
-
-    loading.value = false
   })
+
+  loading.value = false
 }
 </script>
 
