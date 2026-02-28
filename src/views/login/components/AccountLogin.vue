@@ -6,8 +6,8 @@ import { computed, ref } from 'vue'
 
 defineEmits(['register'])
 
-const email = ref('')
-const password = ref('')
+const email = ref('1716607668@qq.com')
+const password = ref('12345678')
 const loginDisabled = computed(() => {
   return password.value.length < 6 || !verfyEmail(email.value)
 })
@@ -31,24 +31,14 @@ const handleLogin = () => {
 
 <template>
   <a-space direction="vertical" size="large">
-    <a-input
-      size="large"
-      v-model="email"
-      :style="{ width: '320px' }"
-      placeholder="请输入邮箱"
-      allow-clear
-    >
+    <a-input size="large" v-model="email" :style="{ width: '320px' }" placeholder="请输入邮箱(1716607668@qq.com)"
+      allow-clear>
       <template #prefix>
         <icon-user />
       </template>
     </a-input>
-    <a-input-password
-      size="large"
-      v-model="password"
-      :style="{ width: '320px' }"
-      placeholder="请输入密码"
-      allow-clear
-    >
+    <a-input-password size="large" v-model="password" :style="{ width: '320px' }" placeholder="请输入密码(12345678)"
+      allow-clear>
       <template #prefix>
         <icon-lock />
       </template>
@@ -59,13 +49,7 @@ const handleLogin = () => {
         <a-button class="w-full" @click="$emit('register')">注册</a-button>
       </div>
       <div>
-        <a-button
-          :disabled="loginDisabled"
-          class="w-full"
-          type="primary"
-          @click="handleLogin"
-          >登录</a-button
-        >
+        <a-button :disabled="loginDisabled" class="w-full" type="primary" @click="handleLogin">登录</a-button>
       </div>
     </div>
   </a-space>

@@ -81,6 +81,26 @@
 
 #### 1.4 项目预览
 
+##### 1.4.1 用户界面
+
+![image-20260228131807243](https://files.seeusercontent.com/2026/02/28/0Mht/image-20260228131807243.png)
+
+![image-20250324194211192](https://s2.loli.net/2025/03/24/Nc3pEzuZveQYC6X.png)
+
+![image-20250324194332182](https://s2.loli.net/2025/03/24/TJN798mpMVjbHc2.png)
+
+![image-20250324194445385](https://s2.loli.net/2025/03/24/fovX1imbWSlLTIg.png)
+
+![image-20250324194530713](https://s2.loli.net/2025/03/24/1afXUkyTCo8hIx9.png)
+
+##### 1.4.2 管理员界面
+
+![image-20250324194823470](https://s2.loli.net/2025/03/24/XOh89AsDMbWT6t3.png)
+
+![image-20250324194907814](https://s2.loli.net/2025/03/24/mzLGoutyFCKhkaB.png)
+
+![image-20250324194951238](https://s2.loli.net/2025/03/24/YQEC12OFGLRjNKl.png)
+
 ---
 
 ### 2. 项目关键点笔记

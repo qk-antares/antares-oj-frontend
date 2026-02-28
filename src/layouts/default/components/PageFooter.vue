@@ -4,7 +4,7 @@
   <div class="flex items-center w-full my-12 justify-center">
 
     <div class="text-gray-500 ">
-      © 2025 流火 Judge 在线判题平台
+      © 2025 流火 CodeBoxer 在线判题平台
     </div>
 
     <div>
